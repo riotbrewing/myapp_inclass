@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react'
+import ListItem from "./ListItem";
 
 //const App = () => {}
 
@@ -38,8 +39,14 @@ function App() {
           <div>
             <ul>
               {
+                  //need to have the key WHENEVER YOU SEE .map maps need keys
                   listItems.map((item, index) => {
-                  return (<li key = {item + index}>{item}</li>);
+                  return (
+                      <ListItem
+                          key={index}
+                          item={item}
+                      />
+                  );
                 })
               }
             </ul>
