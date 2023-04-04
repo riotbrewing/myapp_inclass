@@ -8,6 +8,12 @@ function App() {
     const[userEnteredTodo, setUserEnteredTodo] = React.useState("");
     const [listItems, setListItem] = React.useState([]);
 
+    const saveItemAndClearInput = () =>
+    {
+        setListItem([...listItems, userEnteredTodo]);
+        //add logic to clear input
+        setUserEnteredTodo("");
+    }
     //this is basically equivalent to this...
     /*
         const useState = () => {
@@ -40,20 +46,26 @@ function App() {
               {/* events must be camel cased */}
 
             <input
-
-
                 onChange= {(event) =>
                     {
                         setUserEnteredTodo(event.target.value);
                     }}
+                onKeyDown={(event) => {
+                    //console.log(event); //this is how we found the code
+                    if(event.code === "Enter" || event.code === "NumpadEnter")
+                    {
+                        if(userEnteredTodo.localeCompare("")) {
+                            saveItemAndClearInput();
+                        }
+                    }
+                }}
                 value={userEnteredTodo}
             />
               <button
               onClick={(event)=>{
-                  
-                  setListItem([...listItems, userEnteredTodo]);
-                  //add logic to clear input
-                  setUserEnteredTodo("");
+                  if(userEnteredTodo.localeCompare("")) {
+                      saveItemAndClearInput();
+                  }
               }}
               >Add</button>
           </div>
