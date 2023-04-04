@@ -5,10 +5,9 @@ import React from 'react'
 //const App = () => {}
 
 function App() {
-    const[userEnteredTodo, setUserEnteredTodo] = React.useState();
+    const[userEnteredTodo, setUserEnteredTodo] = React.useState("");
     const [listItems, setListItem] = React.useState([]);
 
-    console.log(userEnteredTodo);
     //this is basically equivalent to this...
     /*
         const useState = () => {
@@ -34,29 +33,27 @@ function App() {
             <ul>
               {
                   listItems.map((item, index) => {
-                  return (<li key = {item + index}>{item}</li>)
+                  return (<li key = {item + index}>{item}</li>);
                 })
               }
             </ul>
               {/* events must be camel cased */}
 
             <input
-                onMouseOver={(event) =>
-                    {
-                        console.log("Moused Over")
-                    }}
+
 
                 onChange= {(event) =>
                     {
-                        setUserEnteredTodo(event.target.value)
-                        console.log(event.target.value)
-                    }
-            }
+                        setUserEnteredTodo(event.target.value);
+                    }}
+                value={userEnteredTodo}
             />
               <button
               onClick={(event)=>{
-                  console.log("Clicked")
-                  setListItem([...listItems, userEnteredTodo])
+                  
+                  setListItem([...listItems, userEnteredTodo]);
+                  //add logic to clear input
+                  setUserEnteredTodo("");
               }}
               >Add</button>
           </div>
