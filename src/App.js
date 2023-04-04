@@ -5,8 +5,10 @@ import React from 'react'
 //const App = () => {}
 
 function App() {
-    const [listItems, setListItem] = React.useState([])
+    const[userEnteredTodo, setUserEnteredTodo] = React.useState();
+    const [listItems, setListItem] = React.useState([]);
 
+    console.log(userEnteredTodo);
     //this is basically equivalent to this...
     /*
         const useState = () => {
@@ -46,11 +48,17 @@ function App() {
 
                 onChange= {(event) =>
                     {
-                        setListItem([event.target.value])
+                        setUserEnteredTodo(event.target.value)
                         console.log(event.target.value)
                     }
             }
             />
+              <button
+              onClick={(event)=>{
+                  console.log("Clicked")
+                  setListItem([...listItems, userEnteredTodo])
+              }}
+              >Add</button>
           </div>
       );
     }
