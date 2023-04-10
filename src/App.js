@@ -42,13 +42,20 @@ function App() {
                   //need to have the key WHENEVER YOU SEE .map maps need keys
                   listItems.map((item, index) => {
                   return (
+
                       <ListItem
                           key={index}
                           item={item}
+                          index={index}
+                          listItems = {listItems}
+                          setListItems = {setListItem}
                       />
                   );
-                })
-              }
+
+                }
+                )}
+
+
             </ul>
               {/* events must be camel cased */}
 
@@ -80,3 +87,8 @@ function App() {
     }
 
 export default App;
+
+/*
+    Add Delete functionality to this for next week
+    Also make it look pretty
+ */
