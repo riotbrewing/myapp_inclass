@@ -7,6 +7,7 @@ const ListItem = (props) => {
     // we could also use props
     // {props.item}
     let {item, index, listItems, setListItems} = props;
+    const [showDeleteButton, setShowDeleteButton] = React.useState(false)
 
     const deleteFunction = (index) =>
     {
@@ -16,10 +17,27 @@ const ListItem = (props) => {
         ])
     }
 
+    const handleMouseEnter = () =>
+    {
+        console.log("Enter")
+        setShowDeleteButton(true)
+    }
+
+    const handleMouseLeave = () =>
+    {
+        console.log("leave")
+        setShowDeleteButton(false)
+    }
     return(
-        <li>
+        <li onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <div>{item}</div>
-            <button onClick={() => deleteFunction(index)}>Delete</button>
+            {
+                //use a ternary operator to either show or hide delete buttons
+            }
+            {showDeleteButton ? <button onClick={() => deleteFunction(index)}>Delete</button> : null}
+
         </li>
     )
 }
