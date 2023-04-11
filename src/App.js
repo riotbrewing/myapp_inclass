@@ -2,12 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import ListItem from "./ListItem";
+import Input from "./Input";
 
 //const App = () => {}
 
 function App() {
     const[userEnteredTodo, setUserEnteredTodo] = React.useState("");
     const [listItems, setListItem] = React.useState([]);
+
+    const deleteFunction = (index) =>
+    {
+        setListItem([
+            ...listItems.slice(0, index),
+            ...listItems.slice(index + 1)
+        ])
+    }
 
     const saveItemAndClearInput = () =>
     {
@@ -59,7 +68,7 @@ function App() {
             </ul>
               {/* events must be camel cased */}
 
-            <input
+            {/*<input
                 onChange= {(event) =>
                     {
                         setUserEnteredTodo(event.target.value);
@@ -73,8 +82,28 @@ function App() {
                         }
                     }
                 }}
+                //sets the value of the input line to ""
                 value={userEnteredTodo}
-            />
+            />*/}
+              <Input
+                  id ={'input-id'}
+                  name = {'user-entered-todo'}
+                  onChange= {(event) =>
+                  {
+                      setUserEnteredTodo(event.target.value);
+                  }}
+                  onKeyDown={(event) => {
+                      //console.log(event); //this is how we found the code
+                      if(event.code === "Enter" || event.code === "NumpadEnter")
+                      {
+                          if(userEnteredTodo.localeCompare("")) {
+                              saveItemAndClearInput();
+                          }
+                      }
+                  }}
+                  //sets the value of the input line to ""
+                  value={userEnteredTodo}
+              />
               <button
               onClick={(event)=>{
                   if(userEnteredTodo.localeCompare("")) {
